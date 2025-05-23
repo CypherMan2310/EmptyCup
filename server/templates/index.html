@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/styles/index.css" />
+    <title>EmptyCup</title>
+    <style>
+      .highlighted {
+        background-color: #f3ffe0; /* Light green when shortlisted */
+      }
+    </style>
+  </head>
+  <body>
+    <section class="header">
+      <div class="header-class">
+        <div class="logo-class">
+          <img src="../static/assets/EC-logo.png" alt="Logo" class="logo" />
+        </div>
+        <div class="header-title">
+          <a href="/" class="title">EmptyCup</a>
+        </div>
+        <div class="settings-icon">
+          <img
+            src="../static/assets/three-dots-vertical 1.png"
+            alt="Settings"
+            class="settings-icons"
+          />
+        </div>
+        <div class="seperator">
+          <img src="../static/assets/Line 1.png" alt="Line" class="line" />
+        </div>
+      </div>
+    </section>
+
+    <section class="navigation">
+      <div class="navigation-container">
+        <div class="navigation-container1">
+          <div class="Contacts">
+            <a href="#"
+              ><img
+                src="../static/assets/Group 6.png"
+                alt="Contacts"
+                class="contacts"
+            /></a>
+          </div>
+          <div class="Gallery">
+            <a href="#"
+              ><img
+                src="../static/assets/Group 7.png"
+                alt="Gallery"
+                class="gallery"
+            /></a>
+          </div>
+          <div class="Maps">
+            <a href="#"
+              ><img src="../static/assets/Group 8.png" alt="Maps" class="maps"
+            /></a>
+          </div>
+        </div>
+        <div class="navigation-container2">
+          <div class="Shortlisted">
+            <a href="#"
+              ><img
+                src="../static/assets/Group 10.png"
+                alt="Shortlisted"
+                class="shortlisted"
+            /></a>
+          </div>
+          <div class="Sort">
+            <a href="#"
+              ><img src="../static/assets/Group 9.png" alt="Sort" class="sort"
+            /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="listings-container"></section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const container = document.getElementById("listings-container");
+
+        fetch("/static/data.json")
+          .then((response) => response.json())
+          .then((listings) => {
+            listings.forEach((item) => {
+              const listingHTML = `
+                <section class="listing">
+                  <div class="list">
+                    <div class="listing1-container">
+                      <div class="listing-title">${item.title}</div>
+                      <div class="listing-rating">
+                        <img src="../static/assets/listing1-rating.png" alt="Rating" class="rating" />
+                      </div>
+                      <div class="listing-description">${item.description}</div>
+                      <div class="listing-history">
+                        <div class="count">
+                          <p>${item.project}</p>
+                          <p>${item.years}</p>
+                          <p>${item.price}</p>
+                        </div>
+                        <div class="names">
+                          <p>Project</p>
+                          <p>Years</p>
+                          <p>Price</p>
+                        </div>
+                      </div>
+                      <div class="listing-contact">
+                        <p>+91 - 984532853</p>
+                        <p>+91 - 984532854</p>
+                      </div>
+                    </div>
+                    <div class="line">
+                      <img src="../static/assets/Line 3 (1).png" alt="Line" class="line" />
+                    </div>
+                    <div class="sidebar">
+                      <div class="details">
+                        <img src="../static/assets/details.png" alt="Details" class="details" />
+                        <p>Details</p>
+                      </div>
+                      <div class="hide">
+                        <img src="../static/assets/hide.png" alt="Hide" class="hide" />
+                        <p>Hide</p>
+                      </div>
+                      <div class="shortlist">
+                        <button class="shortlist-btn">
+                          <img
+                            src="../static/assets/unselected.png"
+                            alt="Shortlist Icon"
+                            class="shortlist-icon"
+                          />
+                        </button>
+                        <p>Shortlist</p>
+                      </div>
+                      <div class="report">
+                        <img src="../static/assets/report.png" alt="Report" class="report" />
+                        <p>Report</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              `;
+
+              container.insertAdjacentHTML("beforeend", listingHTML);
+            });
+
+            // Activate toggle behavior after all listings are added
+            document.querySelectorAll(".shortlist-btn").forEach((btn) => {
+              btn.addEventListener("click", () => {
+                const icon = btn.querySelector("img");
+                const isSelected = icon.src.includes("selected.png");
+                const listingSection = btn.closest(".listing");
+
+                // Toggle image
+                icon.src = isSelected
+                  ? "../static/assets/unselected.png"
+                  : "../static/assets/selected.png";
+
+                // Toggle background class
+                listingSection.classList.toggle("highlighted", !isSelected);
+              });
+            });
+          })
+          .catch((error) => {
+            console.error("Error loading listings:", error);
+          });
+      });
+    </script>
+  </body>
+</html>

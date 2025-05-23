@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Epic Designs",
+    "rating": "3.5",
+    "description": "Passionate team of 4 designers working out of Bangalore with an experience of 4 years.",
+    "price": "$$",
+    "project": 57,
+    "years": 8
+  },
+  {
+    "id": 2,
+    "title": "Studio-D3",
+    "rating": "4.5",
+    "description": "Passionate team of 4 designers working out of Bangalore with an experience of 4 years.",
+    "price": "$$$",
+    "project": 43,
+    "years": 6
+  },
+  {
+    "id": 3,
+    "title": "House of design",
+    "rating": "4.5",
+    "description": "Passionate team of 4 designers working out of Bangalore with an experience of 4 years.",
+    "price": "$$$",
+    "project": 43,
+    "years": 6
+  },
+  {
+    "id": 4,
+    "title": "House of design",
+    "rating": "4.5",
+    "description": "Passionate team of 4 designers working out of Bangalore with an experience of 4 years.",
+    "price": "$$$",
+    "project": 43,
+    "years": 6
+  }
+]
