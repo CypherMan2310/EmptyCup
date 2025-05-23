@@ -19,5 +19,5 @@ it toggels between the images i have uploaded from the canva design
 I havent used any databases in this projects i have used a static JSON file that can change the static webpage into a dynamic one
 the javascript and the flask server are used to complete this task the code for the dynamic page is still under development but it can still be used
 
-##Deployment
+## Deployment
 I have included a two docker file that are used for the loacl and the cloud  deployment purposes 
